@@ -3,44 +3,46 @@
 
 using namespace std;
 
-bool ini_list(TimeoutSqlist &L) {//³õÊ¼»¯Ë³Ðò±í
-	cout << "list³õÊ¼»¯......\n" << endl;
+bool ini_list(TimeoutSqlist &L) {//åˆå§‹åŒ–é¡ºåºè¡¨
+	cout << "liståˆå§‹åŒ–......\n" << endl;
 	L.elem = new ConnTime_out[MAX_SIZE];
 	if (!L.elem) {
-		cout << "list³õÊ¼»¯Ê§°Ü!" << endl;
+		cout << "liståˆå§‹åŒ–å¤±è´¥!" << endl;
 		return false;
 	}
 	else {
 		L.length = 0;
 		L.size = MAX_SIZE;
-		cout << "list³õÊ¼»¯³É¹¦!" << endl;
+		cout << "liståˆå§‹åŒ–æˆåŠŸ!" << endl;
 		return true;
 	}
 }
-bool Append_list(TimeoutSqlist &L,ConnTime_out add_elem) {//Ë³Ðò±íÊý¾ÝÊäÈë
+
+bool Append_list(TimeoutSqlist &L,ConnTime_out add_elem) {//é¡ºåºè¡¨æ•°æ®è¾“å…¥
 	if (!L.elem) {
-		cout << "\nlistÎ´½øÐÐ³õÊ¼»¯,listÊý¾ÝÊäÈëÊ§°Ü!\n";
+		cout << "\nlistæœªè¿›è¡Œåˆå§‹åŒ–,listæ•°æ®è¾“å…¥å¤±è´¥!\n";
 		return false;
 	}
 	if (L.length == L.size) {
-		cout << "\nlistÒÑÂú!Ìí¼ÓÊý¾ÝÊ§°Ü!\n";
+		cout << "\nlistå·²æ»¡!æ·»åŠ æ•°æ®å¤±è´¥!\n";
 		return false;
 	}
 	L.elem[L.length] = add_elem;
 	L.length++;
 	return true;
 }
+
 bool List_Delete(TimeoutSqlist &L, int pos) {
 	if (!L.elem) {
-		cout << "\nlistÎ´½øÐÐ³õÊ¼»¯,listÉ¾³ý½ÚµãÊ§°Ü!\n";
+		cout << "\nlistæœªè¿›è¡Œåˆå§‹åŒ–,liståˆ é™¤èŠ‚ç‚¹å¤±è´¥!\n";
 		return false;
 	}
 	if (pos < 0 || pos >= L.length) {
-		cout << "\nÉ¾³ýÊý¾ÝÊ§°Ü!¿ÉÉ¾³ý½ÚµãÎ»ÖÃÔÚ0~" << L.length - 1 << endl;
+		cout << "\nåˆ é™¤æ•°æ®å¤±è´¥!å¯åˆ é™¤èŠ‚ç‚¹ä½ç½®åœ¨0~" << L.length - 1 << endl;
 		return false;
 	}
 	if (L.length == 0) {
-		cout << "\nlistÎª¿Õ!\n";
+		cout << "\nlistä¸ºç©º!\n";
 		return false;
 	}
 	for (int j = pos; j < L.length - 1; j++) {
@@ -49,27 +51,29 @@ bool List_Delete(TimeoutSqlist &L, int pos) {
 	L.length--;
 	return true;
 }
-bool destroy_list(TimeoutSqlist &L) {//É¾³ýË³Ðò±í
+
+bool destroy_list(TimeoutSqlist &L) {//åˆ é™¤é¡ºåºè¡¨
 	if (!L.elem) {
-		cout << "\nlistÎ´½øÐÐ³õÊ¼»¯,listÉ¾³ýÊ§°Ü!\n";
+		cout << "\nlistæœªè¿›è¡Œåˆå§‹åŒ–,liståˆ é™¤å¤±è´¥!\n";
 		return false;
 	}
 	delete[]L.elem;
 	L.length = 0;
 	L.size = 0;
-	cout << "\n\nlistÉ¾³ý³É¹¦!\n";
+	cout << "\n\nliståˆ é™¤æˆåŠŸ!\n";
 	return true;
 }
-bool print_list(TimeoutSqlist &L) {//´òÓ¡Ë³Ðò±í
+
+bool print_list(TimeoutSqlist &L) {//æ‰“å°é¡ºåºè¡¨
 	if (!L.elem) {
-		cout << "\nlistÎ´½øÐÐ³õÊ¼»¯,list´òÓ¡Ê§°Ü!\n";
+		cout << "\nlistæœªè¿›è¡Œåˆå§‹åŒ–,listæ‰“å°å¤±è´¥!\n";
 		return false;
 	}
 	if (L.length <= 0) {
-		cout << "\nlistÎª¿Õ,ÎÞÐè´òÓ¡!\n";
+		cout << "\nlistä¸ºç©º,æ— éœ€æ‰“å°!\n";
 		return false;
 	}
-	cout << "\nµ±Ç°:ÈÝÁ¿" << L.size << "  ÒÑ´æµÄÔªËØ¸öÊý:" << L.length<<"\n\n";
+	cout << "\nå½“å‰:å®¹é‡" << L.size << "  å·²å­˜çš„å…ƒç´ ä¸ªæ•°:" << L.length<<"\n\n";
 	for (int i = 0; i < L.length; i++) {
 		cout << "fd:" << L.elem[i].fd << "   time_out:" << L.elem[i].time_out<<"\n\n";
 	}
